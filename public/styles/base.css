@@ -1,0 +1,11 @@
+@import 'layout.css';
+@import 'variubles/colors.css';
+@import 'variubles/fonts.css';
+
+header {
+  font-family: var(--header-font);
+}
+body {
+  font-family: var(--minor-font);
+  color: var(--text-second);
+}

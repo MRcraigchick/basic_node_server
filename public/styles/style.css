@@ -1,0 +1,18 @@
+@import 'base.css';
+@import 'form.css';
+
+.main-header {
+  color: var(--text-prime);
+  font-size: 2rem;
+}
+
+@media (max-width: 400px) {
+  .main-header {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 300px) {
+  .main-header {
+    font-size: 1.2rem;
+  }
+}

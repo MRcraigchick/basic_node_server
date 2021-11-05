@@ -1,0 +1,17 @@
+{
+  "name": "basiv_node_server",
+  "version": "1.0.0",
+  "description": "Basic node server with sqlite3",
+  "main": "server.js",
+  "scripts": {
+    "start": "node lib\\cli\\initServer.js dev localhost 8000 http",
+    "dev": "nodemon server.js",
+    "init-db": "node db\\init_db.js"
+  },
+  "author": "Craig Chick",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "sqlite3": "^5.0.2"
+  }
+}
