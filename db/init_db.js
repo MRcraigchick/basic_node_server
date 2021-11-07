@@ -1,7 +1,6 @@
 const path = require('path');
 
 const { create_db, executeScript } = require('./sqlite3_connector');
-const schema = process.argv[3];
 
 const createDB = new Promise((resolve, reject) => {
   resolve(create_db());
@@ -9,6 +8,13 @@ const createDB = new Promise((resolve, reject) => {
 
 createDB
   .then(() => {
-    executeScript(path.join(__dirname, schema));
+    executeScript(`DROP TABLE IF EXISTS user;
+
+    CREATE TABLE user(
+        user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        username VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL
+    );`);
   })
   .catch((error) => console.log(error));

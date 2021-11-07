@@ -1,0 +1,42 @@
+.index-btns-container {
+  height: 300px;
+  width: 100%;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+  border: solid;
+  max-width: 150px;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--text-prime);
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.link-btn:hover {
+  border: solid var(--text-second);
+  color: var(--text-second);
+}
+.link-btn:active {
+  transform: scale(0.98);
+}
+
+.sign-up-btn {
+  border: solid var(--primary);
+  background-color: var(--primary);
+  color: var(--light-text);
+}
+.sign-up-btn:hover {
+  border: solid var(--primary-light);
+  background-color: var(--primary-light);
+  color: var(--light-text);
+}

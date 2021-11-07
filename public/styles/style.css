@@ -1,5 +1,6 @@
 @import 'base.css';
 @import 'form.css';
+@import 'links.css';
 
 .main-header {
   color: var(--text-prime);

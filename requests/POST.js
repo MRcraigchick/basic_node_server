@@ -1,31 +1,80 @@
 const { get_db } = require('../db/sqlite3_connector');
-const { GET } = require('./GET');
 
 function POST(root, req, res) {
+  let newUser = {};
+  let errors = [];
   if (req.url === '/success') {
-    let newUser = {};
-    req.on('data', (data) => {
-      data = data.toString('utf8').split('&');
-      data = data.map((kv) => kv.split('='));
-      for (let pair of data) {
-        newUser[pair[0]] = pair[1];
-      }
-    });
-    req.on('end', () => {
-      const db = get_db();
-      if (newUser.username !== '' && newUser.password !== '') {
-        db.run('INSERT INTO user(username, password) VALUES(?, ?)', [newUser.username, newUser.password], (error) => {
+    req
+      .on('data', (data) => {
+        newUser = parseFormData(data);
+        const db = get_db();
+        console.log(newUser.username);
+        if (newUser.email === '') {
+          console.log('sq');
+          errors.push('An email is required');
+        }
+        if (newUser.username === '') {
+          errors.push('A username is required');
+        }
+        if (newUser.username === '') {
+          errors.push('A password is required');
+        }
+
+        db.all('SELECT * FROM user WHERE (email) = (?)', [newUser.email], (error, rows) => {
           if (error) {
-            return console.error(error);
-          } else {
-            console.log(`
-            New user ${newUser.username} inserted into database
-            `);
+            console.log(error);
+          }
+          if (rows[0] !== undefined) {
+            errors.push('User already exists');
           }
         });
-      }
-    });
+        console.log(errors);
+        if (errors.length === 0) {
+          newUser.email = newUser.email.split('%40').join('@');
+          console.log(newUser);
+          db.run(
+            'INSERT INTO user(email, username, password) VALUES(?, ?, ?)',
+            [newUser.email, newUser.username, newUser.password],
+            (error) => {
+              console.log(error);
+            }
+          );
+        }
+      })
+      .on('end', () => {
+        res.on('error', (error) => {
+          console.log(error);
+        });
+      });
+    console.log(errors);
+    if (errors.length === 0) {
+      res.writeHead(302, {
+        'Location': '/login',
+      });
+      res.write(JSON.stringify(newUser));
+      res.end();
+    } else {
+      res.write(`
+<h1>Form Errors</h1>
+<ul>
+${errors.map((error) => {
+  return '<li>' + error + '</li>';
+})}
+<ul>
+`);
+      res.end();
+    }
   }
+}
+
+function parseFormData(data) {
+  let dataObj = {};
+  data = data.toString('utf8').split('&');
+  data = data.map((kv) => kv.split('='));
+  for (let pair of data) {
+    dataObj[pair[0]] = pair[1].toString('utf8');
+  }
+  return dataObj;
 }
 
 module.exports = { POST };

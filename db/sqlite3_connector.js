@@ -8,12 +8,12 @@ const dbFileName = process.argv[2];
 // the file inside a newly created folder called instance
 // then sets a new property on process.env call DB as the path to the file
 function create_db() {
-  // if (!fs.existsSync(instance_path)) {
-  //   fs.mkdirSync(instance_path);
-  // }
-  // if (!fs.existsSync(path.join(instance_path, dbFileName))) {
-  //   fs.closeSync(fs.openSync(path.join(instance_path, dbFileName), 'w'));
-  // }
+  if (!fs.existsSync(instance_path)) {
+    fs.mkdirSync(instance_path);
+  }
+  if (!fs.existsSync(path.join(instance_path, dbFileName))) {
+    fs.closeSync(fs.openSync(path.join(instance_path, dbFileName), 'w'));
+  }
   process.env.DB = path.join(instance_path, dbFileName);
   console.log('\n<-- Created database -->');
 }
@@ -36,21 +36,20 @@ function executeScript(sqlScript) {
   const db = get_db();
   if (fs.existsSync(sqlScript)) {
     sqlScript = fs.readFileSync(sqlScript, { encoding: 'utf8' }).toString().split(';');
-    sqlScript = sqlScript.filter((x) => x !== '');
-    console.log(`\nSQL script: ${sqlScript}\n`);
-    db.serialize(() => {
-      db.run('PRAGMA foreign_keys=OFF;');
-      db.run('BEGIN TRANSACTION;');
-      for (let query of sqlScript) {
-        query += ';';
-        db.run(query !== ';' ? query : null);
-      }
-      db.run('COMMIT');
-    });
   } else {
-    db.run(sqlScript);
-    db.run('COMMIT');
+    sqlScript = sqlScript.toString('utf8').split(';');
   }
+  sqlScript = sqlScript.filter((x) => x !== '');
+  console.log(`\nSQL script: ${sqlScript}\n`);
+  db.serialize(() => {
+    db.run('PRAGMA foreign_keys=OFF;');
+    db.run('BEGIN TRANSACTION;');
+    for (let query of sqlScript) {
+      query += ';';
+      db.run(query !== ';' ? query : null);
+    }
+    db.run('COMMIT');
+  });
   console.log('<-- Executed script on the database -->\n');
   db.close((err) => {
     if (err) {

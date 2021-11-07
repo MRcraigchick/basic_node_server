@@ -31,5 +31,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log(`
-${chalk.bold.yellow('SERVER')}: [ HOST: ${chalk.bold.white(HOST)}, PORT: ${chalk.bold.white(PORT)} ]`);
+${chalk.bold.yellow('SERVER')}: [ HOST: ${chalk.bold.white(HOST)}, PORT: ${chalk.bold.white(PORT)} ]
+http://${HOST}:${PORT}
+`);
 });

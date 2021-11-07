@@ -7,7 +7,6 @@ function GET(root, req, res) {
   if (req.url === '/') {
     res.write(readFile(root, req.url + 'index.html'));
   } else if (extension === undefined) {
-    console.log('hello');
     res.write(readFile(root, req.url + '.html'));
   } else {
     try {

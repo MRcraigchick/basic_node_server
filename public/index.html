@@ -5,21 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="styles/style.css" />
-    <title>Node login</title>
+    <title>index</title>
   </head>
   <body>
     <header>
-      <h1 class="main-header">Login with base node</h1>
+      <h1 class="main-header">Base node Server</h1>
     </header>
     <section class="content">
-      <form class="auth-form" action="/success" method="post">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-input" name="username" type="text" />
-        <label class="form-label" for="password">Password</label>
-        <input class="form-input" name="password" type="text" />
-        <button class="form-submit-btn" type="submit">Login</button>
-      </form>
+      <div class="index-btns-container">
+        <a href="/signup" class="link-btn sign-up-btn">Sign Up</a>
+        <a href="/login" class="link-btn login-btn">Login</a>
+      </div>
     </section>
-    <script src="src/scripts.js"></script>
+    <script src="src/createaccount.js"></script>
   </body>
 </html>
