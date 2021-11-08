@@ -1,3 +1,5 @@
+function signUpError(error) {
+  return `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +14,7 @@
       <h1 class="main-header">Base node Server</h1>
       <h2>Sign up</h2>
     </header>
+    <div class="error">${error}</div>
     <section class="content">
       <form class="auth-form" action="/newuser" method="post">
         <label class="form-label" for="email">Email</label>
@@ -30,3 +33,7 @@
     <script src="src/signup.js"></script>
   </body>
 </html>
+`;
+}
+
+module.exports = { signUpError };

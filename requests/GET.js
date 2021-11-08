@@ -6,11 +6,14 @@ function GET(root, req, res) {
 
   if (req.url === '/') {
     res.write(readFile(root, req.url + 'index.html'));
+    res.end();
   } else if (extension === undefined) {
     res.write(readFile(root, req.url + '.html'));
+    res.end();
   } else {
     try {
       res.write(readFile(root, req.url));
+      res.end();
     } catch {
       null;
     }

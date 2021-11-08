@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 const { create_db, executeScript } = require('./sqlite3_connector');
 
@@ -8,13 +9,6 @@ const createDB = new Promise((resolve, reject) => {
 
 createDB
   .then(() => {
-    executeScript(`DROP TABLE IF EXISTS user;
-
-    CREATE TABLE user(
-        user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        username VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL
-    );`);
+    executeScript(fs.readFileSync(path.join(__dirname, 'schema.sql')));
   })
   .catch((error) => console.log(error));

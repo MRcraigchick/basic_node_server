@@ -7,6 +7,12 @@
   font-size: 2rem;
 }
 
+.error {
+  padding-top: 20px;
+  color: var(--error);
+  font-weight: 600;
+}
+
 @media (max-width: 400px) {
   .main-header {
     font-size: 1.5rem;

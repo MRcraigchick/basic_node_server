@@ -40,3 +40,14 @@
   background-color: var(--primary-light);
   color: var(--light-text);
 }
+
+.lower-link,
+.lesser-lower-link {
+  text-decoration: none;
+  color: var(--text-prime);
+  font-weight: 600;
+}
+.lower-link:hover,
+.lesser-lower-link:hover {
+  text-decoration: underline;
+}

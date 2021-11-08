@@ -1,7 +1,6 @@
 const chalk = require('chalk');
 const http = require('http');
 const path = require('path');
-const qs = require('querystring');
 const { logRequestsToConsole } = require('./lib/consoleLog');
 const { MIMEtype } = require('./lib/resHelpers');
 const { GET } = require('./requests/GET');
@@ -23,10 +22,8 @@ const server = http.createServer((req, res) => {
     GET(ROOT_DIR, req, res);
   }
   if (req.method === 'POST') {
-    POST(ROOT_DIR, req, res);
+    POST(req, res);
   }
-
-  res.end();
 });
 
 server.listen(PORT, HOST, () => {

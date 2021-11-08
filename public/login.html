@@ -9,10 +9,11 @@
   </head>
   <body>
     <header>
-      <h1 class="main-header">Login to Base node Server</h1>
+      <h1 class="main-header">Base node Server</h1>
+      <h2>Login</h2>
     </header>
     <section class="content">
-      <form class="auth-form" action="/success" method="post">
+      <form class="auth-form" action="/loginuser" method="post">
         <label class="form-label" for="username">Email</label>
         <input class="form-input" name="username" type="text" />
         <label class="form-label" for="password">Password</label>
@@ -20,6 +21,10 @@
         <button class="form-submit-btn" type="submit">Login</button>
       </form>
     </section>
+    <footer>
+      <p class="lower-msg">Don't have an account?<a class="lower-link" href="/signup"> Click here to sign up</a></p>
+      <a class="lesser-lower-link" href="/">Or return to homepage</a>
+    </footer>
     <script src="src/login.js"></script>
   </body>
 </html>
