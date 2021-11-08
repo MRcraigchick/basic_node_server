@@ -1,5 +1,5 @@
 {
-  "name": "basiv_node_server",
+  "name": "basic_node_server",
   "version": "1.0.0",
   "description": "Basic node server with sqlite3",
   "main": "server.js",
