@@ -1,6 +1,7 @@
 @import 'base.css';
 @import 'form.css';
 @import 'links.css';
+@import 'nav.css';
 
 .main-header {
   color: var(--text-prime);
@@ -11,6 +12,9 @@
   padding-top: 20px;
   color: var(--error);
   font-weight: 600;
+  font-size: 0.8rem;
+  width: 100%;
+  max-width: 350px;
 }
 
 @media (max-width: 400px) {

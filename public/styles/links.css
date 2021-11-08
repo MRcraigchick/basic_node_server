@@ -45,7 +45,8 @@
 .lesser-lower-link {
   text-decoration: none;
   color: var(--text-prime);
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 17px;
 }
 .lower-link:hover,
 .lesser-lower-link:hover {
