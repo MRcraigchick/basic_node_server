@@ -1,20 +1,16 @@
 @import 'base.css';
 @import 'form.css';
+@import 'errors.css';
 @import 'links.css';
 @import 'nav.css';
+
+.heading {
+  padding: 20px;
+}
 
 .main-header {
   color: var(--text-prime);
   font-size: 2rem;
-}
-
-.error {
-  padding-top: 20px;
-  color: var(--error);
-  font-weight: 600;
-  font-size: 0.8rem;
-  width: 100%;
-  max-width: 350px;
 }
 
 @media (max-width: 400px) {

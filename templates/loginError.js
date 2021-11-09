@@ -1,30 +1,46 @@
 function loginError(user, error) {
+  const top = error.top !== '' ? `<div class="error">${error.top}</div>` : '';
+  const email = error.email !== '' ? `<div class="error">${error.email}</div>` : '';
+  const password = error.password !== '' ? `<div class="error">${error.password}</div>` : '';
+
+  if (user.email.includes('%40')) {
+    user.email = user.email.split('%40').join('@');
+  }
+  if (error.top !== '') {
+    user.email = '';
+    user.password = '';
+  }
+  if (error.email !== '') {
+    user.email = '';
+  }
+  if (error.password !== '') {
+    user.password = '';
+  }
+
   return `
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="styles/style.css" />
-    <title>login</title>
+    <title>BnS login</title>
   </head>
   <body>
-    <header>
+    <header class="heading">
       <h1 class="main-header">Base node Server</h1>
       <h2>Login</h2>
     </header>
-    <div class="error">${error[1]}</div>
+    ${top}
     <section class="content">
       <form class="auth-form" action="/loginuser" method="post">
         <label class="form-label" for="email">Email</label>
-        <input class="form-input" name="email" type="text" value="${
-          error[0] === 'email' ? '' : user.email.split('%40').join('@')
-        }" />
+        <input class="form-input" name="email" type="text" value="${user.email}" />
+        ${email}
         <label class="form-label" for="password">Password</label>
-        <input class="form-input" name="password" type="password" value="${
-          error[0] === 'password' ? '' : user.password
-        }"/>
+        <input class="form-input" name="password" type="password" value="${user.password}"/>
+        ${password}
         <button class="form-submit-btn" type="submit">Login</button>
       </form>
     </section>

@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const http = require('http');
 const path = require('path');
 const { logRequestsToConsole } = require('./lib/consoleLog');
-const { MIMEtype } = require('./lib/resHelpers');
+const { MIMEtype } = require('./lib/helpers');
 const { GET } = require('./requests/GET');
 const { POST } = require('./requests/POST');
 
